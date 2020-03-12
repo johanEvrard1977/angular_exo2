@@ -1,0 +1,30 @@
+<p>{{title}}</p>
+<input type="text" [(ngModel)] = "username"/>
+<p>{{username}}</p>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">produits</th>
+        <th scope="col">description</th>
+        <th scope="col">quantité</th>
+        <th scope="col">prix</th>
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container   *ngFor="let elements of products">
+            <ng-container  *ngIf="elements.stockQuantity > 0">
+                <tr>
+                    <th scope="row">{{elements.identifiant}}</th>
+                    <td>{{elements.titre}}</td>
+                    <td>{{elements.description}}</td>
+                    <td>{{elements.stockQuantity}}</td>
+                    <td [ngClass] = "{cheap: elements.prix < 5}">{{elements.prix}}</td>
+                    <td><button title="acheter" (click)="acheter(elements)">acheter</button></td>
+                </tr>
+            </ng-container>
+        </ng-container>
+    </tbody>
+  </table>
